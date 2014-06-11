@@ -1,6 +1,6 @@
 # monitorctrlc
 
-[![Build status](https://travis-ci.org/pandell/node-monitorctrlc.svg?branch=master)](https://travis-ci.org/pandell/node-monitorctrlc) [![devDependencies status](https://david-dm.org/pandell/node-monitorctrlc/dev-status.svg)](https://david-dm.org/pandell/node-monitorctrlc#info=devDependencies)
+[![Build status](https://travis-ci.org/pandell/node-monitorctrlc.svg?branch=master)](https://travis-ci.org/pandell/node-monitorctrlc) [!["dependencies" status](https://david-dm.org/pandell/node-monitorctrlc.svg)](https://david-dm.org/pandell/node-monitorctrlc) [!["devDependencies" status](https://david-dm.org/pandell/node-monitorctrlc/dev-status.svg)](https://david-dm.org/pandell/node-monitorctrlc#info=devDependencies)
 
 > Prevent SIGINT on Ctrl+C
 
