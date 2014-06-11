@@ -2,8 +2,11 @@
 
 "use strict";
 
-var log = require("gulp/node_modules/gulp-util").log;
-var chalk = require("gulp/node_modules/chalk");
+var chalk = require("chalk");
+
+var log;
+try { log = require("gulp/node_modules/gulp-util").log; } catch (ignore) {}
+if (!log) { log = console.log; }
 
 function defaultCtrlCHandler() {
     log("'" + chalk.cyan('^C') + "'" + ', exiting');
