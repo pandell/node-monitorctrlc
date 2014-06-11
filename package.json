@@ -45,7 +45,6 @@
     "gulp-jslint-simple": "^0.1",
     "gulp-mocha": "^0.4",
     "gulp-taskfromstreams": "^0.0",
-    "gulp-util": "^2.2",
-    "mocha": "^1.20"
+    "gulp-util": "^2.2"
   }
 }
