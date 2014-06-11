@@ -1,10 +1,10 @@
 {
-  "name": "gulp-monitorctrlc",
+  "name": "monitorctrlc",
   "version": "0.0.1",
   "description": "Prevent SIGINT on Ctrl+C",
   "license": "MIT",
   "main": "index.js",
-  "repository": "pandell/gulp-monitorctrlc",
+  "repository": "pandell/node-monitorctrlc",
   "author": {
     "name": "Pandell Technology",
     "url": "http://pandell.com/"
@@ -16,7 +16,10 @@
     }
   ],
   "keywords": [
-    "gulpplugin",
+    "key",
+    "keydown",
+    "tty",
+    "stdin",
     "sigint",
     "ctrl+c",
     "ctrlc"
@@ -30,10 +33,13 @@
     "test": "gulp test"
   },
   "bugs": {
-    "url": "https://github.com/pandell/gulp-monitorctrlc/issues"
+    "url": "https://github.com/pandell/node-monitorctrlc/issues"
   },
-  "homepage": "https://github.com/pandell/gulp-monitorctrlc",
+  "homepage": "https://github.com/pandell/node-monitorctrlc",
   "readmeFilename": "README.md",
+  "dependencies": {
+    "chalk": "^0.4"
+  },
   "devDependencies": {
     "gulp": "^3.8",
     "gulp-jslint-simple": "^0.0",
