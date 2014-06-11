@@ -4,8 +4,15 @@
 
 var chalk = require("chalk");
 
+// load "gulp-util.log" defensively, using "console.log" if unavailable
 var log;
-try { log = require("gulp/node_modules/gulp-util").log; } catch (ignore) {}
+try {
+    log = require("gulp-util").log;
+} catch (ignore2) {
+    try {
+        log = require("gulp/node_modules/gulp-util").log;
+    } catch (ignore) {}
+}
 if (!log) { log = console.log; }
 
 function defaultCtrlCHandler() {
