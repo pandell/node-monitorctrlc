@@ -1,15 +1,15 @@
-# [gulp](http://gulpjs.com/)-monitorctrlc [![Build Status](https://travis-ci.org/pandell/gulp-monitorctrlc.svg?branch=master)](https://travis-ci.org/pandell/gulp-monitorctrlc) [![devDependencies Status](https://david-dm.org/pandell/gulp-monitorctrlc/dev-status.svg)](https://david-dm.org/pandell/gulp-monitorctrlc#info=devDependencies)
+# monitorctrlc [![Build Status](https://travis-ci.org/pandell/node-monitorctrlc.svg?branch=master)](https://travis-ci.org/pandell/node-monitorctrlc) [![devDependencies Status](https://david-dm.org/pandell/node-monitorctrlc/dev-status.svg)](https://david-dm.org/pandell/node-monitorctrlc#info=devDependencies)
 
 > Prevent SIGINT on Ctrl+C
 
 This function will prevent sending of `SIGINT` signal when `Ctrl+C` is pressed. Instead, the specified (or default) callback will be invoked.
 
-Preventing `SIGINT` in projects that are using `gulp.watch` on Windows will suppress the annoying `Terminate batch job (Y/N)?` prompt after `Ctrl+C`. This gives your gulp watcher consistent behavior across all platforms.
+Preventing `SIGINT` in projects that are (for example) using file system watchers on Windows will suppress the annoying `Terminate batch job (Y/N)?` prompt after `Ctrl+C`. This gives your watcher consistent behavior across all platforms.
 
 ## Install
 
 ```sh
-$ npm install --save-dev gulp-monitorctrlc
+$ npm install --save-dev monitorctrlc
 ```
 
 
@@ -17,7 +17,7 @@ $ npm install --save-dev gulp-monitorctrlc
 
 ```js
 var gulp = require('gulp');
-var monitorCtrlC = require('gulp-monitorctrlc');
+var monitorCtrlC = require('monitorctrlc');
 
 gulp.task('watch', function () {
     monitorCtrlC();
@@ -31,7 +31,7 @@ gulp.task('watch', function () {
 Assuming:
 
 ```js
-var monitorCtrlC = require('gulp-monitorctrlc');
+var monitorCtrlC = require('monitorctrlc');
 ```
 
 ### `monitorCtrlC([cb])`
