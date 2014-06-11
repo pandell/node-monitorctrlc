@@ -46,6 +46,18 @@ _Default_: default handler
 optional function that will be called when `Ctrl+C` is pressed; if not specified, default handler that prints a message and exits the current process will be used.
 
 
+### `monitorCtrlC.defaultCtrlCHandler()`
+
+The function that handles `Ctrl+C` by default (if no callback is specified for `monitorCtrlC`). You can define a new default handler by assigning your custom function to this property:
+
+```js
+var monitorCtrlC = require('monitorctrlc');
+monitorCtrlC.defaultCtrlCHandler = function customHandler() { ... };
+
+monitorCtrlC(); // will use customHandler
+```
+
+
 ## Contributing
 
 1. Clone git repository
