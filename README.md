@@ -4,6 +4,10 @@
 
 > Prevent SIGINT on Ctrl+C
 
+[Git repository](https://github.com/pandell/node-monitorctrlc)
+
+[Changelog](https://github.com/pandell/node-monitorctrlc/releases)
+
 This function will prevent sending of `SIGINT` signal when `Ctrl+C` is pressed. Instead, the specified (or default) callback will be invoked.
 
 Preventing `SIGINT` in projects that are (for example) using file system watchers on Windows will suppress the annoying `Terminate batch job (Y/N)?` prompt after `Ctrl+C`. This gives your watcher consistent behavior across all platforms.
