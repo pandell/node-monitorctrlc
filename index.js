@@ -10,7 +10,7 @@ function defaultCtrlCHandler() {
     process.exit();
 }
 
-module.exports = function monitorCtrlC(cb) {
+function monitorCtrlC(cb) {
     var stdin = process.stdin;
     if (stdin && stdin.isTTY) {
         if (typeof cb !== 'function') { cb = defaultCtrlCHandler; }
@@ -21,4 +21,7 @@ module.exports = function monitorCtrlC(cb) {
             }
         });
     }
-};
+}
+
+module.exports = monitorCtrlC;
+module.exports.defaultCtrlCHandler = defaultCtrlCHandler;
