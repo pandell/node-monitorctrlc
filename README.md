@@ -1,6 +1,6 @@
-# [gulp](http://gulpjs.com/)-monitorctrlc
+# [gulp](http://gulpjs.com/)-monitorctrlc [![Build Status](https://travis-ci.org/pandell/gulp-monitorctrlc.svg?branch=master)](https://travis-ci.org/pandell/gulp-monitorctrlc) [![devDependencies Status](https://david-dm.org/pandell/gulp-monitorctrlc/dev-status.svg)](https://david-dm.org/pandell/gulp-monitorctrlc#info=devDependencies)
 
-> 
+> Prevent SIGINT on Ctrl+C
 
 This function will prevent sending of `SIGINT` signal when `Ctrl+C` is pressed. Instead, the specified (or default) callback will be invoked.
 
