@@ -3,6 +3,7 @@
 "use strict";
 
 var gulp = require("gulp");
+var jshint = require("gulp-jshint");
 var jslint = require("gulp-jslint-simple");
 var mocha = require("gulp-mocha");
 var taskFromStreams = require("gulp-taskfromstreams");
@@ -15,6 +16,7 @@ var testFiles = "test.js";
 gulp.task("lint", taskFromStreams(function () {
     return [
         gulp.src([rootFiles, testFiles]),
+        jshint(),
         jslint.run(),
         jslint.report({ emitErrorAtEnd: true })
     ];
