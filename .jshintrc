@@ -17,5 +17,5 @@
   "strict": true,
   "trailing": true,
 
-  "node": true
+  "laxbreak": true
 }
