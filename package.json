@@ -43,9 +43,9 @@
   "devDependencies": {
     "gulp": "^3.8",
     "gulp-jshint": "^1.6",
-    "gulp-jslint-simple": "^0.1",
-    "gulp-mocha": "^0.4",
-    "gulp-taskfromstreams": "^0.0",
+    "gulp-jslint-simple": "0.*",
+    "gulp-mocha": "0.*",
+    "gulp-taskfromstreams": "0.*",
     "gulp-util": "^2.2"
   }
 }
