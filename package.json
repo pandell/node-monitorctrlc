@@ -1,6 +1,6 @@
 {
   "name": "monitorctrlc",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Prevent SIGINT on Ctrl+C",
   "license": "MIT",
   "main": "index.js",
@@ -28,6 +28,7 @@
     "node": ">=0.8.0"
   },
   "scripts": {
+    "clobber": "rimraf node_modules npm-debug.log",
     "lint": "gulp lint",
     "start": "gulp watch",
     "test": "gulp test"
@@ -38,7 +39,7 @@
   "homepage": "https://github.com/pandell/node-monitorctrlc",
   "readmeFilename": "README.md",
   "dependencies": {
-    "chalk": "^0.4"
+    "chalk": "^0.5"
   },
   "devDependencies": {
     "gulp": "^3.8",
