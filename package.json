@@ -1,6 +1,6 @@
 {
   "name": "monitorctrlc",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Prevent SIGINT on Ctrl+C",
   "license": "MIT",
   "main": "index.js",
@@ -47,6 +47,6 @@
     "gulp-jslint-simple": "0.*",
     "gulp-mocha": "0.*",
     "gulp-taskfromstreams": "0.*",
-    "gulp-util": "^2.2"
+    "gulp-util": "^3.0"
   }
 }
