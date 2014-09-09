@@ -1,6 +1,6 @@
 {
   "name": "monitorctrlc",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "Prevent SIGINT on Ctrl+C",
   "license": "MIT",
   "main": "index.js",
