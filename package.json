@@ -39,13 +39,13 @@
   "homepage": "https://github.com/pandell/node-monitorctrlc",
   "readmeFilename": "README.md",
   "dependencies": {
-    "chalk": "^0.5"
+    "chalk": "^1.0"
   },
   "devDependencies": {
     "gulp": "^3.8",
     "gulp-jshint": "^1.6",
     "gulp-jslint-simple": "^1.0",
-    "gulp-mocha": "^1.0",
+    "gulp-mocha": "^2.0",
     "gulp-taskfromstreams": "^1.0",
     "gulp-util": "^3.0"
   }
