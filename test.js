@@ -6,7 +6,7 @@
 var assert = require("assert");
 var events = require("events");
 
-var monitorCtrlC = require("./");
+var monitorCtrlC = require("./").monitorCtrlC;
 
 
 // We can't use mocha's "beforeEach" and "afterEach" because we're hijacking

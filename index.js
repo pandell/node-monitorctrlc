@@ -27,5 +27,6 @@ function monitorCtrlC(cb) {
     }
 }
 
-module.exports = monitorCtrlC;
-module.exports.defaultCtrlCHandler = defaultCtrlCHandler;
+module.exports = {
+    monitorCtrlC: monitorCtrlC
+};
