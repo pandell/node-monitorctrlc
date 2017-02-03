@@ -3,11 +3,11 @@ import * as tty from "tty";
 
 
 /**
- * Prints a message indicating Ctrl+C was pressed then exits the process.
+ * Prints a message indicating Ctrl+C was pressed then kills the process with SIGINT status.
  */
 export function defaultCtrlCHandler(): void {
     console.log(`'${chalk.cyan("^C")}', exiting`);
-    process.exit();
+    process.kill(process.pid, "SIGINT");
 }
 
 /**
