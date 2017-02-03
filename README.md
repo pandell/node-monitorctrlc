@@ -80,6 +80,23 @@ The function that handles `Ctrl+C` by default (if no callback is specified for `
 
 4. Make changes, don't forget to add tests, submit a pull request.
 
+## How to publish
+
+In terminal of your choice:
+
+
+```sh
+cd ~/work/node-monitorctrlc
+yarn clobber
+
+yarn version # updates version in "./package.json", requires yarn 0.20+
+yarn install
+yarn dist
+
+cd dist
+yarn publish # for beta releases: yarn publish --tag beta
+```
+
 
 ## License
 
