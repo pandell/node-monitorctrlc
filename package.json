@@ -25,7 +25,7 @@
     "ctrlc"
   ],
   "engines": {
-    "node": ">=0.8.0"
+    "node": ">=4"
   },
   "scripts": {
     "clobber": "git -c core.longpaths=true clean -dfX",
