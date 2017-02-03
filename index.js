@@ -25,5 +25,6 @@ function monitorCtrlC(cb) {
 }
 
 module.exports = {
+    defaultCtrlCHandler: defaultCtrlCHandler,
     monitorCtrlC: monitorCtrlC
 };
