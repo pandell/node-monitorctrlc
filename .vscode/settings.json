@@ -1,9 +1,9 @@
 {
-  // jslint extension settings
-  "jslint.version": "2014-07-08",
-  "jslint.options": {
-    "node": true,
-    "nomen": true,
-    "vars": true
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "tslint.autoFixOnSave": true,
+  "search.exclude": {
+    "**/node_modules": true,
+    "build/**": true,
+    "dist/**": true
   }
 }
