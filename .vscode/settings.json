@@ -1,0 +1,9 @@
+{
+  // jslint extension settings
+  "jslint.version": "2014-07-08",
+  "jslint.options": {
+    "node": true,
+    "nomen": true,
+    "vars": true
+  }
+}
