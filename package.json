@@ -29,9 +29,10 @@
   },
   "scripts": {
     "clobber": "git -c core.longpaths=true clean -dfX",
-    "lint": "jslint --edition 2014-07-08 *.js",
-    "start": "mocha --watch test.js",
-    "test": "mocha test.js"
+    "dist": "shx rm -rf build dist/** && shx mkdir -p dist && shx cp -r src dist && tsc --project tsconfig.dist.json && tslint --project tsconfig.json && node .make-package.js",
+    "lint": "tslint --project tsconfig.json",
+    "start": "tsc --watch --pretty",
+    "test": "tsc && mocha --require source-map-support build/test.js"
   },
   "bugs": {
     "url": "https://github.com/pandell/node-monitorctrlc/issues"
