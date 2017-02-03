@@ -2,23 +2,22 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug unit tests",
       "type": "node2",
       "request": "launch",
-      "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
-      "stopOnEntry": false,
-      "args": ["--no-timeouts", "--require", "source-map-support", "build/test.js"],
+      "name": "Mocha Tests",
       "cwd": "${workspaceRoot}",
-      "preLaunchTask": null,
-      "runtimeExecutable": null,
-      "runtimeArgs": [
-        "--nolazy"
-      ],
-      "env": {
-        "NODE_ENV": "development"
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/mocha",
+      "windows": {
+        "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/mocha.cmd"
       },
-      "console": "internalConsole",
-      "sourceMaps": true
+      "runtimeArgs": [
+        "--timeout",
+        "999999",
+        "--colors",
+        "${workspaceRoot}/build"
+      ],
+      "sourceMaps": true,
+      "internalConsoleOptions": "openOnSessionStart"
     }
   ]
 }
