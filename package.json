@@ -45,7 +45,7 @@
   "devDependencies": {
     "@types/chalk": "^0.4.31",
     "@types/mocha": "^2.2.38",
-    "@types/node": "4",
+    "@types/node": "^4.2.1",
     "jslint": "^0.10.3",
     "mocha": "^3.2.0",
     "shx": "^0.2.2",

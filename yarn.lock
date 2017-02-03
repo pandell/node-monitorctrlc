@@ -10,7 +10,7 @@
   version "2.2.38"
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-2.2.38.tgz#8c188f6e34c2e7c3f1d0127d908d5a36e5a60dc9"
 
-"@types/node@4":
+"@types/node@^4.2.1":
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-4.2.1.tgz#07b6a3380afa1a31fada30137abe8ad1e27b0a4f"
 
