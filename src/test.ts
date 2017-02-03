@@ -56,7 +56,7 @@ function hijackSystemCalls(cb: Function): () => any {
 describe("monitorCtrlC()", () => {
 
     it("uses default handler", hijackSystemCalls((consoleBuffer: string[]) => {
-        monitorCtrlC();
+        const monitor = monitorCtrlC();
         process.stdin.emit("data", new Buffer("\u0003")); // fake ^C
 
         assert.deepEqual(consoleBuffer, [
@@ -64,16 +64,18 @@ describe("monitorCtrlC()", () => {
             "'^C', exiting",
             `${process.pid} SIGINT`
         ]);
+        monitor.dispose();
     }));
 
     it("uses specified handler", hijackSystemCalls((consoleBuffer: string[]) => {
-        monitorCtrlC(() => { consoleBuffer.push("custom"); });
+        const monitor = monitorCtrlC(() => { consoleBuffer.push("custom"); });
         process.stdin.emit("data", new Buffer("\u0003")); // fake ^C
 
         assert.deepEqual(consoleBuffer, [
             "setRawMode",
             "custom"
         ]);
+        monitor.dispose();
     }));
 
     it("pauses STDIN after 'dispose' is invoked", hijackSystemCalls((consoleBuffer: string[]) => {
