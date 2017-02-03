@@ -1,16 +1,17 @@
 {
-    "version": "0.1.0",
-    "echoCommand": true,
-    "showOutput": "always",
-    "tasks": [
-        {
-            "taskName": "Typescript Watcher",
-            "command": "node",
-            "args": ["node_modules/typescript/lib/tsc.js", "-w", "--pretty"],
-            "isBackground": true,
-            "isBuildCommand": true,
-            "isShellCommand": true,
-            "problemMatcher": "$tsc-watch"
-        }
-    ]
+  "_runner": "terminal",
+  "version": "0.1.0",
+  "echoCommand": true,
+  "showOutput": "always",
+  "tasks": [
+    {
+      "taskName": "Typescript Watcher",
+      "command": "node",
+      "args": ["node_modules/typescript/lib/tsc.js", "-w", "--pretty"],
+      "isBackground": true,
+      "isBuildCommand": true,
+      "isShellCommand": true,
+      "problemMatcher": "$tsc-watch"
+    }
+  ]
 }
