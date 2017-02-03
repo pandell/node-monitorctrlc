@@ -16,19 +16,20 @@ Preventing `SIGINT` in projects that are (for example) using file system watcher
 
 ```sh
 $ npm install --save-dev monitorctrlc
+# or yarn
+$ yarn add --dev monitorctrlc
 ```
 
 
 ## Usage
 
 ```js
-var gulp = require('gulp');
-var monitorCtrlC = require('monitorctrlc');
+import { monitorCtrlC } from "monitorctrlc";
+const monitor = monitorCtrlC();
 
-gulp.task('watch', function () {
-    monitorCtrlC();
-    gulp.watch('**', ['test']);
-});
+// ... execute your program
+
+monitor.dispose(); // detaches event handlers and pauses STDIN
 ```
 
 
@@ -37,14 +38,26 @@ gulp.task('watch', function () {
 Assuming:
 
 ```js
-var monitorCtrlC = require('monitorctrlc');
+import { monitorCtrlC, defaultCtrlCHandler } from "monitorctrlc";
 ```
 
-### `monitorCtrlC([cb])`
+### `monitorCtrlC([onCtrlC]): Disposable`
 
 This function will prevent sending of `SIGINT` signal when `Ctrl+C` is pressed. Instead, the specified (or default) callback will be invoked.
 
-#### cb
+NOTE: This should only be used by programs that do not normally read from STDIN, as this puts the stream into "raw" mode.
+
+If your program has a normal termination path, you should invoke the `dispose` method on the object returned by `monitorCtrlC` to ensure the process can terminate normally. E.g.,
+
+```js
+const monitor = monitorCtrlC();
+
+// ... processing
+
+monitor.dispose(); // detaches event handlers and pauses STDIN
+```
+
+#### onCtrlC
 
 _Type_: Function  
 _Default_: default handler
@@ -52,16 +65,9 @@ _Default_: default handler
 optional function that will be called when `Ctrl+C` is pressed; if not specified, default handler that prints a message and exits the current process will be used.
 
 
-### `monitorCtrlC.defaultCtrlCHandler()`
+### `defaultCtrlCHandler()`
 
-The function that handles `Ctrl+C` by default (if no callback is specified for `monitorCtrlC`). You can define a new default handler by assigning your custom function to this property:
-
-```js
-var monitorCtrlC = require('monitorctrlc');
-monitorCtrlC.defaultCtrlCHandler = function customHandler() { ... };
-
-monitorCtrlC(); // will use customHandler
-```
+The function that handles `Ctrl+C` by default (if no callback is specified for `monitorCtrlC`).
 
 
 ## Contributing
