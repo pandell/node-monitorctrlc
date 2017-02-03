@@ -1,6 +1,0 @@
-/.*
-/test.js
-
-# from .gitignore
-/node_modules/
-/*.log
