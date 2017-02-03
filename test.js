@@ -69,21 +69,6 @@ describe("monitorCtrlC()", function () {
         assert.strictEqual("custom", consoleBuffer[1]);
     }));
 
-    it("uses redefined default handler", hijackSystemCalls(function (consoleBuffer) {
-        var originalHandler = monitorCtrlC.defaultCtrlCHandler;
-        try {
-            monitorCtrlC.defaultCtrlCHandler = function () { consoleBuffer.push("custom"); };
-            monitorCtrlC();
-            process.stdin.emit("data", new Buffer("\u0003")); // fake ^C
-        } finally {
-            monitorCtrlC.defaultCtrlCHandler = originalHandler;
-        }
-
-        assert.strictEqual(2, consoleBuffer.length);
-        assert.strictEqual("setRawMode", consoleBuffer[0]);
-        assert.strictEqual("custom", consoleBuffer[1]);
-    }));
-
     it("ignores invalid default handlers", hijackSystemCalls(function (consoleBuffer) {
         var originalHandler = monitorCtrlC.defaultCtrlCHandler;
         try {

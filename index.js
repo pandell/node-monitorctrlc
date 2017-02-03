@@ -13,10 +13,7 @@ function monitorCtrlC(cb) {
     var stdin = process.stdin;
     if (stdin && stdin.isTTY) {
         if (typeof cb !== 'function') {
-            cb = monitorCtrlC.defaultCtrlCHandler;
-            if (typeof cb !== 'function') {
-                cb = defaultCtrlCHandler;
-            }
+            cb = defaultCtrlCHandler;
         }
         stdin.setRawMode(true);
         stdin.on('data', function monitorCtrlCOnData(data) {
