@@ -1,4 +1,5 @@
 import * as assert from "assert";
+import * as chalk from "chalk";
 import * as events from "events";
 import * as tty from "tty";
 
@@ -12,30 +13,38 @@ function hijackSystemCalls(cb: Function): () => any {
         const emitter = new events.EventEmitter();
         const stdin = process.stdin as tty.ReadStream;
 
-        let originalOn = stdin.on;
+        const originalOn = stdin.on;
         stdin.on = emitter.on.bind(emitter);
 
-        let originalEmit = process.stdin.emit;
+        const originalEmit = process.stdin.emit;
         stdin.emit = emitter.emit.bind(emitter);
 
-        let originalIsTTY = stdin.isTTY;
+        const originalIsTTY = stdin.isTTY;
         stdin.isTTY = true;
 
-        let originalSetRawMode = stdin.setRawMode;
+        const originalSetRawMode = stdin.setRawMode;
         stdin.setRawMode = () => { consoleBuffer.push("setRawMode"); };
 
-        let originalProcessExit = process.exit;
+        const originalPause = stdin.pause;
+        stdin.pause = () => { consoleBuffer.push("pause"); };
+
+        const originalProcessExit = process.exit;
         process.exit = () => { consoleBuffer.push("exit"); };
 
-        let originalConsoleLog = console.log;
-        console.log = function (): void { consoleBuffer.push(Array.prototype.slice.call(arguments, 0).join(" ")); };
+        const originalProcessKill = process.kill;
+        process.kill = function (): void { consoleBuffer.push(Array.prototype.slice.call(arguments, 0).join(" ")); };
+
+        const originalConsoleLog = console.log;
+        console.log = function (): void { consoleBuffer.push(chalk.stripColor(Array.prototype.slice.call(arguments, 0).join(" "))); };
 
         try {
             return cb(consoleBuffer);
         } finally {
             console.log = originalConsoleLog;
             process.exit = originalProcessExit;
+            process.kill = originalProcessKill;
             stdin.setRawMode = originalSetRawMode;
+            stdin.pause = originalPause;
             stdin.isTTY = originalIsTTY;
             stdin.emit = originalEmit;
             stdin.on = originalOn;
@@ -50,19 +59,33 @@ describe("monitorCtrlC()", () => {
         monitorCtrlC();
         process.stdin.emit("data", new Buffer("\u0003")); // fake ^C
 
-        assert.strictEqual(3, consoleBuffer.length);
-        assert.strictEqual("setRawMode", consoleBuffer[0]);
-        assert(consoleBuffer[1].indexOf("exiting") > 0);
-        assert.strictEqual("exit", consoleBuffer[2]);
+        assert.deepEqual(consoleBuffer, [
+            "setRawMode",
+            "'^C', exiting",
+            `${process.pid} SIGINT`
+        ]);
     }));
 
     it("uses specified handler", hijackSystemCalls((consoleBuffer: string[]) => {
         monitorCtrlC(() => { consoleBuffer.push("custom"); });
         process.stdin.emit("data", new Buffer("\u0003")); // fake ^C
 
-        assert.strictEqual(2, consoleBuffer.length);
-        assert.strictEqual("setRawMode", consoleBuffer[0]);
-        assert.strictEqual("custom", consoleBuffer[1]);
+        assert.deepEqual(consoleBuffer, [
+            "setRawMode",
+            "custom"
+        ]);
+    }));
+
+    it("pauses STDIN after 'dispose' is invoked", hijackSystemCalls((consoleBuffer: string[]) => {
+        const monitor = monitorCtrlC();
+
+        monitor.dispose();
+
+        assert.deepEqual(consoleBuffer, [
+            "setRawMode",
+            "setRawMode",
+            "pause"
+        ]);
     }));
 
 });
