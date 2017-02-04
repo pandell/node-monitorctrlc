@@ -44,10 +44,10 @@ export function defaultCtrlCHandler(): void {
  *     Disposable object that restores STDIN to its previous
  *     state, allowing for proper process termination.
  */
-export function monitorCtrlC(onCtrlC: Function = defaultCtrlCHandler): Disposable {
+export function monitorCtrlC(onCtrlC: () => any = defaultCtrlCHandler): Disposable {
     function monitorCtrlCOnData(data: Buffer): void {
         if (data.length === 1 && data[0] === 0x03) { // Ctrl+C
-            return onCtrlC();
+            onCtrlC();
         }
     }
 
