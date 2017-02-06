@@ -62,7 +62,7 @@ describe("monitorCtrlC()", () => {
         assert.deepEqual(consoleBuffer, [
             "setRawMode",
             "'^C', exiting",
-            `${process.pid} SIGINT`
+            "exit"
         ]);
         monitor.dispose();
     }));

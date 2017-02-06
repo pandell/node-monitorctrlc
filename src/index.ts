@@ -1,10 +1,26 @@
 import * as chalk from "chalk";
+import * as os from "os";
 import * as tty from "tty";
 
 
 const emptyDisposable = {
     dispose: () => { return; }
 };
+
+const constants = (os as any).constants; // not present in node4 and mis-typed in node6
+const sigint: number = (constants && constants.signals && typeof constants.signals.SIGINT === "number"
+    ? constants.signals.SIGINT
+    : 2);
+
+/**
+ * Exit code returned when SIGINT causes termination.
+ *
+ * As per node docs[0], will be 128 + value of SIGINT (or 2
+ * if not available).
+ *
+ * [0]: https://nodejs.org/dist/latest-v6.x/docs/api/process.html#process_exit_codes
+ */
+export const sigintExitCode = 128 + sigint;
 
 /**
  * Object that releases resources when "dispose" is invoked.
@@ -17,11 +33,13 @@ export interface Disposable {
 }
 
 /**
- * Prints a message indicating Ctrl+C was pressed then kills the process with SIGINT status.
+ * Prints a message indicating Ctrl+C was pressed then exits the process.
+ *
+ * Exit code will be value of "sigintExitCode".
  */
 export function defaultCtrlCHandler(): void {
     console.log(`'${chalk.cyan("^C")}', exiting`);
-    process.kill(process.pid, "SIGINT");
+    process.exit(sigintExitCode);
 }
 
 /**
