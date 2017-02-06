@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node2",
+      "type": "node",
       "request": "launch",
       "name": "Mocha Tests",
       "cwd": "${workspaceRoot}",
@@ -10,13 +10,9 @@
       "windows": {
         "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/mocha.cmd"
       },
-      "runtimeArgs": [
-        "--timeout",
-        "999999",
-        "--colors",
-        "${workspaceRoot}/build"
-      ],
+      "runtimeArgs": ["--no-timeouts", "--colors", "${workspaceRoot}/build"],
       "sourceMaps": true,
+      "outFiles": ["${workspaceRoot}/build/**/*.js"],
       "internalConsoleOptions": "openOnSessionStart"
     }
   ]
