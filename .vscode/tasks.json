@@ -1,0 +1,15 @@
+{
+  "_runner": "terminal",
+  "version": "0.1.0",
+  "echoCommand": true,
+  "tasks": [
+    {
+      "taskName": "Typescript Watcher",
+      "command": "node node_modules/typescript/lib/tsc.js --watch --pretty",
+      "isBackground": true,
+      "isBuildCommand": true,
+      "isShellCommand": true,
+      "problemMatcher": "$tsc-watch"
+    }
+  ]
+}

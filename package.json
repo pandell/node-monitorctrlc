@@ -25,13 +25,14 @@
     "ctrlc"
   ],
   "engines": {
-    "node": ">=0.8.0"
+    "node": ">=4"
   },
   "scripts": {
-    "clobber": "rimraf node_modules npm-debug.log",
-    "lint": "gulp lint",
-    "start": "gulp watch",
-    "test": "gulp test"
+    "clobber": "git -c core.longpaths=true clean -dfX",
+    "dist": "shx rm -rf build dist/** && shx mkdir -p dist && shx cp -r src dist && tsc --project tsconfig.dist.json && tslint --project tsconfig.json && node .make-package.js",
+    "lint": "tslint --project tsconfig.json",
+    "start": "tsc --watch --pretty",
+    "test": "tsc && mocha --require source-map-support build/test.js"
   },
   "bugs": {
     "url": "https://github.com/pandell/node-monitorctrlc/issues"
@@ -39,14 +40,17 @@
   "homepage": "https://github.com/pandell/node-monitorctrlc",
   "readmeFilename": "README.md",
   "dependencies": {
-    "chalk": "^1.0"
+    "chalk": "^1.1.3"
   },
   "devDependencies": {
-    "gulp": "^3.8",
-    "gulp-jshint": "^1.6",
-    "gulp-jslint-simple": "^1.0",
-    "gulp-mocha": "^2.0",
-    "gulp-taskfromstreams": "^1.0",
-    "gulp-util": "^3.0"
+    "@types/chalk": "^0.4.31",
+    "@types/mocha": "^2.2.38",
+    "@types/node": "^4.2.1",
+    "jslint": "^0.10.3",
+    "mocha": "^3.2.0",
+    "shx": "^0.2.2",
+    "source-map-support": "^0.4.11",
+    "tslint": "^4.4.2",
+    "typescript": "^2.1.5"
   }
 }
